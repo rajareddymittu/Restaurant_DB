@@ -1,0 +1,444 @@
+
+
+
+
+
+
+create table staff(staff_id int primary key,staff_name varchar(20),salary real,phone_no varchar(13),address varchar(30));
+INSERT INTO STAFF VALUES (831,'RAVI',10000,9390187654,'BHPL');
+INSERT INTO STAFF VALUES (832,'RASHI',15000,9666599876,'HYD');
+INSERT INTO STAFF VALUES (833,'RAHUL',11000,9831245678,'HYD');
+INSERT INTO STAFF VALUES (834,'RUPA',12000,9786654123,'MANGALIGIRI');
+INSERT INTO STAFF VALUES (835,'RAHEEM',18000,9873456789,'BHPL');
+INSERT INTO STAFF VALUES (836,'SUBBA RAO',20000,9807653423,'KADAPA');
+INSERT INTO STAFF VALUES (837,'SUHAS',16000,9367856243,'KHAMMAM');
+INSERT INTO STAFF VALUES (838,'SOURAV',18000,9875634211,'RAMPUL');
+INSERT INTO STAFF VALUES (839,'MANI',20000,9657845321,'JADCHERALA');
+INSERT INTO STAFF VALUES (840,'SRINIVAS',50000,9086613457,'DELHI');
+INSERT INTO STAFF VALUES (841,'JHON',45000,9879234511,'MADRAS');
+INSERT INTO STAFF VALUES (842,'LAXMI',60000,9765534122,'HYD');
+select * from staff;
+create table chef(chef_id  int primary key , chef_pos varchar(20),foreign key(chef_id) references staff(staff_id));
+
+INSERT INTO CHEF VALUES (840,'MASTER');
+INSERT INTO CHEF VALUES (841,'JUNIOR');
+INSERT INTO CHEF VALUES (842,'GRAND MASTER');
+create table recipies(recipie_id int primary key,name varchar(20));
+alter table recipies add(cost real);
+create table type(type varchar(20) primary key);
+
+insert into type values('soup');
+insert into type values('starter');
+insert into type values('biryani');
+insert into type values('curry');
+insert into type values('roti');
+
+alter table recipies add(type varchar(20),foreign key(type) references type(type));
+select * from recipies;
+
+insert into recipies values(101,'Tomato Soup',80,'soup');
+insert into recipies values(102,'Paneer Soup',85,'soup');
+insert into recipies values(103,'chicken corn soup',100,'soup');
+insert into recipies values(104,'Egg 65',120,'starter');
+insert into recipies values(105,'Alu 65',120,'starter');
+insert into recipies values(106,'Veg Spring rolls',160,'starter');
+insert into recipies values(107,'Egg Nosile',120,'starter');
+insert into recipies values(108,'veg cutlet',130,'starter');
+insert into recipies values(109,'baby corn chilly',150,'starter');
+insert into recipies values(110,'veg alewala',130,'starter');
+insert into recipies values(111,'Chicken Biryani',260,'biryani');
+insert into recipies values(112,'CHicken Biryani Fam',420,'biryani');
+insert into recipies values(113,'Mutton Biryani',280,'biryani');
+insert into recipies values(114,'Fish Biryani',240,'biryani');
+insert into recipies values(115,'Prawn Biryani',300,'biryani');
+
+
+insert into recipies values(116,'paneer butter masala',150,'curry');
+insert into recipies values(117,'Dal punjabi',120,'curry');
+insert into recipies values(118,'Veg sahi kurma',150,'curry');
+insert into recipies values(119,'Mutton Curry',270,'curry');
+insert into recipies values(120,'Fish Masala',240,'curry');
+insert into recipies values(121,'Butter Chicken',220,'curry');
+insert into recipies values(122,'Hyderabadi Chicken',220,'curry');
+
+
+insert into recipies values(123,'Butter Naan',25,'roti');
+insert into recipies values(124,'Tandori Roti',17,'roti');
+insert into recipies values(125,'Rumal Roti',30,'roti');
+insert into recipies values(126,'paneer paratha',240,'roti');
+
+create table makes(chef_id int,recipie_id int,primary key(chef_id,recipie_id),
+foreign key (chef_id) references chef(chef_id),foreign key (recipie_id) references recipies(recipie_id));
+
+create table product_neccessity(product_id int primary key,product_name varchar(20),quantity int);
+INSERT INTO PRODUCT_NECCESSITY VALUES (1,'CHICKEN',100);
+INSERT INTO PRODUCT_NECCESSITY VALUES(2,'MUTTON',50);
+INSERT INTO PRODUCT_NECCESSITY VALUES(3,'FISH',80);
+INSERT INTO PRODUCT_NECCESSITY VALUES(4,'PRAWNS',60);
+INSERT INTO PRODUCT_NECCESSITY VALUES(5,'BASMATI RICE',500);
+INSERT INTO PRODUCT_NECCESSITY VALUES(6,'WHEAT FLOUR',300);
+INSERT INTO PRODUCT_NECCESSITY VALUES(7,'CORN FLOUR',150);
+INSERT INTO PRODUCT_NECCESSITY VALUES(8,'SEMOLINA',100);
+INSERT INTO PRODUCT_NECCESSITY VALUES(9,'ALL PORPOSE FLOUR',200);
+INSERT INTO PRODUCT_NECCESSITY VALUES(10,'BUTTER',150);
+INSERT INTO PRODUCT_NECCESSITY VALUES(11,'ONIONS',50);
+INSERT INTO PRODUCT_NECCESSITY VALUES(12,'PANNER',20);
+INSERT INTO PRODUCT_NECCESSITY VALUES(13,'SPECIAL MASALA',15);
+INSERT INTO PRODUCT_NECCESSITY VALUES(14,'GAS',2);
+INSERT INTO PRODUCT_NECCESSITY VALUES(15,'MAZAA',5);
+INSERT INTO PRODUCT_NECCESSITY VALUES(16,'SPRITE',5);
+INSERT INTO PRODUCT_NECCESSITY VALUES(17,'THUMSPUS',5);
+INSERT INTO PRODUCT_NECCESSITY VALUES(18,'FIZZ',5);
+INSERT INTO PRODUCT_NECCESSITY VALUES(19,'CAPSICUM',5);
+INSERT INTO PRODUCT_NECCESSITY VALUES(20,'CORRIANDER',20);
+INSERT INTO PRODUCT_NECCESSITY VALUES(21,'MINT',20);
+INSERT INTO PRODUCT_NECCESSITY VALUES(22,'CABBAGE',5);
+INSERT INTO PRODUCT_NECCESSITY VALUES(23,'TOMATOES',5);
+INSERT INTO PRODUCT_NECCESSITY VALUES(24,'CAULIFLOWER',5);
+INSERT INTO PRODUCT_NECCESSITY VALUES(25,'egg',500);
+INSERT INTO PRODUCT_NECCESSITY VALUES(26,'baby corn',5);
+INSERT INTO PRODUCT_NECCESSITY VALUES(27,'Chillies',5);
+INSERT INTO PRODUCT_NECCESSITY VALUES(28,'dal',5);
+INSERT INTO PRODUCT_NECCESSITY VALUES(29,'all0',5);
+
+create table supplier(supplier_id int primary key,supplier_name varchar(20),adress varchar(30));
+alter table supplier add(daily_charge real,time number(4,2));
+insert into supplier values(401,'sneha non veg','bhpl',30000,09.000);
+insert into supplier values(402,'durge rice depo','bhpl',12000,10.00);
+insert into supplier values(403,'lakshmi WS','warangal',40000,06.00);
+insert into supplier values(404,'amul','hyd',36000,04.00);
+insert into supplier values(405,'hp gas','bhpl',1800,08.00);
+insert into supplier values(406,'raja beverages','bhpl',2400,08.00);
+insert into supplier values(407,'maruthi vegetables','bhpl',16000,05.00);
+insert into supplier values(408,'Aachi masala service','manchureal',2000,03.00);
+
+
+
+create table supplies(supplier_id int,product_id int,primary key(supplier_id,product_id),
+foreign key(product_id) references product_neccessity(product_id),foreign key(supplier_id) references supplier(supplier_id));
+insert into supplies (product_id,supplier_id) values (1,401);
+insert into supplies (product_id,supplier_id) values (2,401);
+insert into supplies  (product_id,supplier_id) values (3,401);
+insert into supplies  (product_id,supplier_id) values (4,401);
+insert into supplies (product_id,supplier_id)  values (5,402);
+insert into supplies (product_id,supplier_id)  values (6,403);
+insert into supplies (product_id,supplier_id)  values (7,403);
+insert into supplies (product_id,supplier_id)  values (8,403);
+insert into supplies (product_id,supplier_id)  values (9,403);
+insert into supplies (product_id,supplier_id)  values (10,403);
+insert into supplies (product_id,supplier_id)  values (11,403);
+insert into supplies  (product_id,supplier_id) values (12,404);
+insert into supplies (product_id,supplier_id)  values (13,408);
+insert into supplies (product_id,supplier_id)  values (14,405);
+insert into supplies  (product_id,supplier_id) values (15,406);
+insert into supplies (product_id,supplier_id)  values (16,406);
+insert into supplies (product_id,supplier_id)  values (17,406);
+insert into supplies (product_id,supplier_id)  values (18,406);
+insert into supplies (product_id,supplier_id)  values (19,407);
+insert into supplies (product_id,supplier_id)  values (20,407);
+insert into supplies (product_id,supplier_id)  values (21,407);
+insert into supplies (product_id,supplier_id)  values (22,407);
+insert into supplies (product_id,supplier_id)  values (23,407);
+insert into supplies (product_id,supplier_id)  values (24,407);
+insert into supplies (product_id,supplier_id)  values (25,407);
+insert into supplies (product_id,supplier_id)  values (26,407);
+insert into supplies (product_id,supplier_id)  values (27,407);
+insert into supplies (product_id,supplier_id)  values (28,407);
+insert into supplies (product_id,supplier_id)  values (29,407);
+
+select * from supplies;
+insert into requirements values(101,23,1);
+insert into requirements values(101,21,2);
+insert into requirements values(101,7,3);
+insert into requirements values(102,12,2);
+insert into requirements values(102,21,2);
+insert into requirements values(102,7,7);
+insert into requirements values(103,7,3);
+insert into requirements values(103,10,4);
+insert into requirements values(103,21,1);
+insert into requirements values(104,13,1);
+insert into requirements values(104,9,3);
+insert into requirements values(104,25,1);
+insert into requirements values(105,29,3);
+insert into requirements values(105,13,1);
+insert into requirements values(106,6,1);
+insert into requirements values(106,7,5);
+insert into requirements values(106,19,6);
+insert into requirements values(106,20,7);
+insert into requirements values(106,21,4);
+insert into requirements values(107,25,1);
+insert into requirements values(107,13,1);
+insert into requirements values(107,24,1);
+insert into requirements values(108,9,6);
+insert into requirements values(108,20,1);
+insert into requirements values(108,21,1);
+insert into requirements values(108,22,1);
+insert into requirements values(108,23,6);
+insert into requirements values(109,27,1);
+insert into requirements values(109,28,1);
+insert into requirements values(109,13,3);
+insert into requirements values(110,20,1);
+insert into requirements values(110,21,1);
+insert into requirements values(110,22,8);
+insert into requirements values(110,23,2);
+insert into requirements values(111,1,1);
+insert into requirements values(111,5,9);
+insert into requirements values(111,13,1);
+insert into requirements values(111,21,5);
+insert into requirements values(112,1,2);
+insert into requirements values(112,5,5);
+insert into requirements values(112,13,1);
+insert into requirements values(112,21,5);
+insert into requirements values(113,2,6);
+insert into requirements values(113,5,4);
+insert into requirements values(113,13,3);
+insert into requirements values(113,21,1);
+insert into requirements values(114,3,1);
+insert into requirements values(114,5,2);
+insert into requirements values(114,13,1);
+insert into requirements values(114,21,1);
+insert into requirements values(115,4,3);
+insert into requirements values(115,5,1);
+insert into requirements values(115,13,1);
+insert into requirements values(115,21,4);
+insert into requirements values(116,10,1);
+insert into requirements values(116,12,6);
+insert into requirements values(116,13,1);
+insert into requirements values(116,14,6);
+insert into requirements values(117,28,1);
+insert into requirements values(117,10,2);
+insert into requirements values(117,23,1);
+insert into requirements values(117,13,1);
+insert into requirements values(118,10,2);
+insert into requirements values(118,21,1);
+insert into requirements values(118,22,1);
+insert into requirements values(118,23,1);
+insert into requirements values(119,2,1);
+insert into requirements values(119,23,1);
+insert into requirements values(119,10,3);
+insert into requirements values(119,21,1);
+insert into requirements values(120,3,3);
+insert into requirements values(120,10,1);
+insert into requirements values(120,13,1);
+insert into requirements values(120,21,4);
+insert into requirements values(121,10,2);
+insert into requirements values(121,1,1);
+insert into requirements values(121,214);
+insert into requirements values(121,13,1);
+insert into requirements values(122,1,1);
+insert into requirements values(122,10,1);
+insert into requirements values(122,13,1);
+insert into requirements values(123,9,5);
+insert into requirements values(123,6,6);
+insert into requirements values(124,9,7);
+insert into requirements values(124,6,4);
+insert into requirements values(125,9,2);
+insert into requirements values(126,12,1);
+insert into requirements values(126,9,1);
+insert into requirements values(126,6,1);
+
+create table weighter(weighter_id int primary key,in_time number(4,2),out_time number(4,2),foreign key(weighter_id) references staff(staff_id));
+ALTER TABLE WEIGHTER ADD (RATING INT);
+alter table weighter add no_of_ratings  int  ;
+
+/
+create or replace trigger weighter 
+before insert 
+on weighter for each row
+BEGIN
+ :NEW.no_of_ratings:=0; 
+ :NEW.RATING:=0;END;  
+
+/
+COMMIT;
+/
+INSERT INTO WEIGHTER VALUES(835,10.00,16.00,0,0);
+INSERT INTO WEIGHTER VALUES(836,10.00,16.00,0,0);
+INSERT INTO WEIGHTER VALUES(837,16.00,22.00,0,0);
+INSERT INTO WEIGHTER VALUES(838,16.00,22.00,0,0);
+INSERT INTO WEIGHTER VALUES(839,16.00,22.00,0,0);
+
+create table others(other_id int primary key,in_time number(4,2),out_time number(4,2),foreign key(other_id) references staff(staff_id) ,type varchar(20));
+
+INSERT INTO OTHERS VALUES(831,10.00,16.00,'CLEANER');
+INSERT INTO OTHERS VALUES(832,16.00,22.00,'CLEANER');
+INSERT INTO OTHERS VALUES(833,10.00,18.00,'CUTTER');
+INSERT INTO OTHERS VALUES(834,06.00,10.00,'SWEAPER');
+create table requirements(recipie_id int,product_id int,foreign key(recipie_id) references recipies(recipie_id),foreign key(product_id) references product_neccessity(product_id),primary key(recipie_id,product_id));
+alter table requirements add quantity real;
+select * from requirements;
+create table payment_mode(type varchar(20) primary key);
+ 
+insert into payment_mode values ('phonepay');
+insert into payment_mode values ('gogglepay');
+insert into payment_mode values ('debit card');
+insert into payment_mode values ('credit card');
+insert into payment_mode values ('paytm');
+insert into payment_mode values ('paypal');
+insert into payment_mode values ('cash');
+ 
+create table tables (table_number int primary key);
+truncate table tables;
+/
+declare 
+i int := 201;
+begin
+
+ loop
+ exit when i=221 ;
+ insert into tables values(i);
+ i := i+1;
+ end loop;
+ end ;
+ /
+create table bills(payment_mode varchar(20),price real,table_number int,customer_name varchar(20),DT TIMESTAMP,
+WEIGHTER_ID INT,RATING INT, FOREIGN KEY(WEIGHTER_ID) REFERENCES WEIGHTER(WEIGHTER_ID),
+foreign key(table_number) references tables(table_number),
+foreign key(payment_mode) references payment_mode(type),PRIMARY KEY(TABLE_NUMBER,CUSTOMER_NAME,DT));
+/
+
+CREATE OR REPLACE TRIGGER BILLS
+BEFORE INSERT ON BILLS
+FOR EACH ROW
+BEGIN
+UPDATE WEIGHTER SET RATING=(RATING*NO_OF_RATINGS+:NEW.RATING)/(NO_OF_RATINGS+1) WHERE WEIGHTER_ID=:NEW.WEIGHTER_ID;
+UPDATE WEIGHTER SET NO_OF_RATINGS=NO_OF_RATINGS+1 WHERE WEIGHTER_ID=:NEW.WEIGHTER_ID;
+delete from orders where :NEW.CUSTOMER_NAME=orders.CUSTOMER_NAME AND (:NEW.TABLE_NUMBER=orders.TABLE_NUMBER);
+DELETE FROM OCCUPY WHERE :NEW.CUSTOMER_NAME=OCCUPY.CUSTOMER_NAME AND (:NEW.TABLE_NUMBER=OCCUPY.TABLE_NUMBER);
+END;
+/
+SELECT* FROM BILLS;
+
+create table occupy(customer_name varchar(20),table_number int,
+foreign key(table_number) references tables(table_number),primary key(customer_name,table_number));
+
+insert into occupy values('ramu',201);
+insert into occupy values('raheem',202);
+insert into occupy values('rajesh',203);
+insert into occupy values('supriya',204);
+insert into occupy values('suchiht',205);
+insert into occupy values('suvaishanav',206);
+insert into occupy values('surabhi',207);
+insert into occupy values('anika',208);
+insert into occupy values('avanthi',209);
+
+create table orders(customer_name varchar(20),table_number int,recipie_id int, quantity int,
+foreign key(customer_name,table_number)REFERENCES occupy(customer_name,table_number),foreign key(recipie_id) references recipies(recipie_id),
+unique(customer_name,table_number,recipie_id));
+
+insert into orders values('ramu',201,111,1);
+insert into orders values('ramu',201,107,1);
+insert into orders values('raheem',202,112,2);
+insert into orders values('rajesh',203,116,1);
+insert into orders values('rajesh',203,123,3);
+insert into orders values('supriya',204,113,1);
+insert into orders values('suchiht',205,103,1);
+insert into orders values('suvaishanav',206,108,1);
+insert into orders values('suvaishanav',206,113,1);
+insert into orders values('suvaishanav',206,120,1);
+insert into orders values('suvaishanav',206,123,4);
+insert into orders values('surabhi',207,115,1);
+insert into orders values('anika',208,114,1);
+insert into orders values('avanthi',209,109,1);
+
+
+
+insert into bills values ('phonepay',350,201,'ramu','02-05-2021',836,4.5);
+insert into bills values ('cash',280,204,'supriya','02-05-2021',837,5);
+insert into bills values ('paypal',100,205,'suchith','02-05-2021',838,4);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/
+
+declare 
+i int := 101;
+j int := 840;
+begin
+
+ loop
+ exit when i=111 ;
+ insert into makes values(j,i);
+  i := i+1;
+ end loop;
+ end ;
+/
+declare 
+i int := 111;
+j int := 841;
+begin
+
+ loop
+ exit when i=116 ;
+ insert into makes values(j,i);
+  i := i+1;
+ end loop;
+ end ;
+/
+declare 
+i int := 116;
+j int := 842;
+begin
+
+ loop
+ exit when i=121 ;
+ insert into makes values(j,i);
+  i := i+1;
+ end loop;
+ end ;
+/
+declare 
+i int := 121;
+j int := 841;
+begin
+
+ loop
+ exit when i=123 ;
+ insert into makes values(j,i);
+  i := i+1;
+ end loop;
+ end ;
+/
+declare 
+i int := 123;
+j int := 840;
+begin
+
+ loop
+ exit when i=126;
+ insert into makes values(j,i);
+  i := i+1;
+ end loop;
+ end ;
+/
+select * from chef;
+select * from supplier;
+select * from supplies;
+select * from occupy;
+select * from others;
+select * from weighter;
+select * from makes;
+select * from recipies;
+select * from requirements;
+select * from bills;
+select * from payment_mode;
+select * from product_neccessity;
+select * from staff;
+
+commit;
